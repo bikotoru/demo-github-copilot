@@ -37,17 +37,20 @@ En Python usando FastAPI y TypeScript usando Next.js con React, crea un sistema 
   * Backend: Crear endpoints GET /conversations, GET /conversations/{id}, POST /conversations, DELETE /conversations/{id}
   * Cada conversación debe tener: id único (UUID), título auto-generado, timestamp de creación, array de mensajes
   * Almacenar datos en archivo JSON (conversations.json) sin base de datos
-  * Frontend: Modificar el componente Chat existente para agregar sidebar izquierdo con lista de conversaciones
+  * Frontend: Modificar el componente Chat existente para agregar sidebar izquierdo elegante con lista de conversaciones
   * Implementar funcionalidad para crear nueva conversación, cargar conversación existente, eliminar conversación
   * Auto-generar títulos basados en los primeros 50 caracteres del primer mensaje del usuario
-  * Usar componentes ShadCN UI existentes (Button, ScrollArea, Separator, etc.)
+  * Usar componentes ShadCN UI existentes (Button, ScrollArea, Separator, etc.) con diseño moderno y elegante
+  * Aplicar hover effects, transiciones suaves y micro-interacciones para una experiencia premium
+  * El sidebar debe verse profesional con iconos apropiados, espaciado correcto y jerarquía visual clara
 - Contexto: La aplicación actual usa el componente Chat en frontend/components/chat.tsx con streaming hacia backend FastAPI, pero las conversaciones se pierden al recargar
 - Restricciones: 
   * No usar base de datos, solo archivos JSON
   * Mantener compatibilidad con el sistema de streaming actual en /chat/stream
-  * El sidebar debe ser responsive y colapsable en móviles usando componentes ShadCN UI
-  * Mantener el theme provider y modo oscuro existente
+  * El sidebar debe ser responsive y colapsable en móviles usando componentes ShadCN UI con animaciones fluidas
+  * Mantener el theme provider y modo oscuro existente con transiciones elegantes entre temas
   * Máximo 100 conversaciones guardadas (eliminar las más antiguas automáticamente)
+  * Diseño general debe ser visualmente atractivo, moderno y profesional, similar a aplicaciones como ChatGPT o Claude
 ```
 
 **Archivos a modificar:**
@@ -70,12 +73,14 @@ En TypeScript usando Next.js con React y ShadCN UI, implementa renderizado de Ma
 - Objetivo principal: Mostrar mensajes con formato Markdown (negrita, cursiva, código, listas, enlaces, etc.)
 - Requisitos específicos:
   * Instalar y configurar react-markdown y react-syntax-highlighter
-  * Modificar el componente Chat existente para renderizar mensajes de la IA con formato Markdown
-  * Syntax highlighting para bloques de código con nombres de lenguajes
-  * Soporte para tablas, listas, enlaces, imágenes
-  * Mantener el estilo visual actual del chat (colores ShadCN UI, espaciado, bordes redondeados)
-  * Agregar botón "copiar código" en bloques de código usando componentes ShadCN UI
-  * Integrar con el tema oscuro/claro existente usando next-themes
+  * Modificar el componente Chat existente para renderizar mensajes de la IA con formato Markdown elegante
+  * Syntax highlighting para bloques de código con nombres de lenguajes y esquema de colores atractivo
+  * Soporte para tablas, listas, enlaces, imágenes con estilos visuales pulidos
+  * Mejorar el estilo visual del chat manteniendo colores ShadCN UI pero con mayor refinamiento
+  * Agregar botón "copiar código" elegante en bloques de código con efectos hover y feedback visual
+  * Integrar con el tema oscuro/claro existente usando next-themes con transiciones suaves
+  * Aplicar tipografía mejorada, espaciado óptimo y jerarquía visual clara para contenido Markdown
+  * Diseño debe ser moderno, limpio y profesional, similar a interfaces de documentación premium
 - Contexto: La aplicación actual usa frontend/components/chat.tsx que muestra mensajes como texto plano, pero la IA Gemini responde con Markdown
 - Restricciones:
   * Mantener compatibilidad con el streaming actual (renderizar Markdown incremental durante el streaming)
@@ -83,6 +88,7 @@ En TypeScript usando Next.js con React y ShadCN UI, implementa renderizado de Ma
   * Sanitizar contenido para evitar XSS
   * No afectar el rendimiento del streaming en /chat/stream
   * Usar solo los componentes ShadCN UI ya instalados donde sea posible
+  * El resultado final debe verse elegante, moderno y profesional con atención al detalle en UX/UI
 ```
 
 **Archivos a modificar:**
@@ -106,17 +112,20 @@ En Python usando FastAPI y TypeScript usando Next.js con ShadCN UI, implementa u
   * Backend: Modificar el endpoint /chat/stream para calcular tokens antes y después de cada llamada a Gemini
   * Usar la función count_tokens() de la API de Gemini para conteo preciso
   * Retornar en la respuesta streaming: input_tokens, output_tokens, total_tokens
-  * Frontend: Modificar el componente Chat existente para mostrar contadores debajo de cada mensaje con iconos de Lucide React
-  * Agregar contador total de la sesión en la cabecera del chat (junto al toggle de tema)
-  * Mostrar costo estimado basado en precios actuales de Gemini (input: $0.000125/1K tokens, output: $0.000375/1K tokens)
-  * Usar Badge component de ShadCN UI para mostrar la información de tokens
+  * Frontend: Modificar el componente Chat existente para mostrar contadores elegantes debajo de cada mensaje con iconos de Lucide React
+  * Agregar contador total de la sesión visualmente atractivo en la cabecera del chat (junto al toggle de tema)
+  * Mostrar costo estimado basado en precios actuales de Gemini (input: $0.000125/1K tokens, output: $0.000375/1K tokens) con formato monetario claro
+  * Usar Badge component de ShadCN UI con colores apropiados y diseño pulido para mostrar la información de tokens
+  * Implementar micro-animaciones y transiciones suaves para la actualización de contadores
+  * Diseño de contadores debe ser discreto pero informativo, con jerarquía visual clara y estética profesional
 - Contexto: La aplicación actual usa streaming en /chat/stream y el componente Chat, los usuarios necesitan controlar costos
 - Restricciones:
   * Mantener compatibilidad con streaming actual (actualizar contadores en tiempo real durante el stream)
   * Los contadores deben ser discretos visualmente usando componentes ShadCN UI pero informativos
-  * Incluir Toggle component para ocultar/mostrar información de tokens
+  * Incluir Toggle component elegante para ocultar/mostrar información de tokens con transiciones suaves
   * Calcular tokens solo cuando sea necesario para optimizar rendimiento
-  * Respetar el tema oscuro/claro existente
+  * Respetar el tema oscuro/claro existente con diseño cohesivo y profesional
+  * La interfaz completa debe mantener la elegancia y modernidad del chat existente
 ```
 
 **Archivos a modificar:**
