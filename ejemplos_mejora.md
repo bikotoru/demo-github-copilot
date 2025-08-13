@@ -100,48 +100,29 @@ En Python usando FastAPI y TypeScript usando Next.js con React, implementa desde
 
 ```
 #file:frontend/components/chat.tsx
-#file:frontend/package.json
 
-En TypeScript usando Next.js con React y ShadCN UI, implementa renderizado de Markdown elegante en los mensajes del chat:
+En TypeScript usando Next.js con React y ShadCN UI, agrega soporte para renderizado de Markdown en los mensajes del chat:
 
-- Objetivo principal: Agregar soporte completo para renderizado de Markdown en mensajes de la IA con diseño profesional
+- Objetivo principal: Los mensajes de la IA deben mostrarse con formato Markdown (código, listas, enlaces, etc.) en lugar de texto plano
 - Requisitos específicos:
-  * Instalar y configurar react-markdown, react-syntax-highlighter y rehype-sanitize
-  * Modificar el componente Chat para renderizar mensajes de la IA con formato Markdown elegante
-  * Crear un componente MarkdownMessage reutilizable y bien estructurado
-  * Syntax highlighting profesional para bloques de código con esquemas de colores que respeten el tema
-  * Soporte completo para: tablas, listas, enlaces, imágenes, citas, código inline y bloques de código
-  * Agregar botón "copiar código" elegante en bloques de código con feedback visual (ícono cambia a check)
-  * Integración perfecta con tema oscuro/claro usando variables CSS de ShadCN UI
-  * DISEÑO RESPONSIVO: Los bloques de código deben adaptarse correctamente a móviles sin causar scroll horizontal
-  * Estilos pulidos que mantengan la consistencia visual del chat existente
-  * Tipografía optimizada para lectura cómoda con espaciado apropiado
-  * Manejo correcto de elementos inline vs block para evitar layout quebrado
-  * Sanitización de contenido para prevenir XSS
-  * Los estilos deben ser elegantes, modernos y profesionales como interfaces premium
-- Contexto: La aplicación actual es un chat con IA que muestra mensajes como texto plano, pero la IA responde frecuentemente con Markdown formateado. El backend ya está funcionando perfectamente con streaming.
+  * Solo los mensajes de la IA deben renderizarse como Markdown (los mensajes del usuario siguen como texto plano)
+  * Soporte para: bloques de código con syntax highlighting, código inline, listas, enlaces, tablas, citas, imágenes
+  * Botón "copiar" en bloques de código con feedback visual
+  * Diseño elegante que mantenga la consistencia visual del chat actual
+  * Totalmente responsivo - no debe romper el diseño en móviles
+  * Integración perfecta con tema oscuro/claro existente
+  * Sanitización de contenido por seguridad
+  * Compatible con streaming incremental (renderizar mientras se recibe el texto)
+- Contexto: Chat con IA que actualmente muestra todos los mensajes como texto plano, pero la IA responde con Markdown
 - Restricciones:
-  * IMPORTANTE: Esta es una mejora SOLO de FRONTEND - NO modificar nada en el backend
-  * NO tocar el archivo backend/main.py ni ningún endpoint del backend
-  * El backend ya funciona correctamente con streaming - solo cambiar cómo se renderizan los mensajes en el frontend
-  * Mantener compatibilidad total con el streaming incremental (renderizar Markdown durante el stream)
-  * Los estilos deben respetar las variables CSS de ShadCN UI existentes
-  * No afectar el rendimiento del streaming en tiempo real
-  * Asegurar que el contenido Markdown no rompa el diseño del chat en ningún tamaño de pantalla
-  * Los bloques de código no deben causar overflow horizontal en móviles
-  * Mantener la funcionalidad existente del chat sin alteraciones
-  * El resultado debe ser visualmente estable y elegante en todos los casos
-  * Priorizar la robustez visual y la experiencia de usuario
-  * CRÍTICO: No cambiar la API ni los endpoints del backend - es puramente frontend
+  * SOLO modificar el frontend - NO tocar backend/main.py ni endpoints
+  * No afectar el streaming ni la funcionalidad existente del chat
+  * Mantener el diseño responsivo actual
+  * Usar componentes ShadCN UI existentes donde sea posible
 ```
 
 **Archivos a modificar:**
-- `frontend/components/chat.tsx` (SOLO este archivo - agregar renderizado de markdown)
-- `frontend/package.json` (instalar dependencias de markdown)
-
-**Archivos que NO se deben tocar:**
-- `backend/main.py` - NO MODIFICAR (backend ya funciona perfectamente)
-- Ningún archivo del backend - es solo cambio de frontend
+- `frontend/components/chat.tsx` (agregar renderizado Markdown solo para mensajes IA)
 
 ---
 
