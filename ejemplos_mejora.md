@@ -27,7 +27,8 @@ Las siguientes 3 mejoras están listas para implementar con prompts estructurado
 
 ```
 #file:backend/main.py
-#file:templatenextjs/app/ai-chat/page.tsx
+#file:frontend/components/chat.tsx
+#file:frontend/app/page.tsx
 
 En Python usando FastAPI y TypeScript usando Next.js con React, crea un sistema de historial de conversaciones persistente:
 
@@ -36,19 +37,22 @@ En Python usando FastAPI y TypeScript usando Next.js con React, crea un sistema 
   * Backend: Crear endpoints GET /conversations, GET /conversations/{id}, POST /conversations, DELETE /conversations/{id}
   * Cada conversación debe tener: id único (UUID), título auto-generado, timestamp de creación, array de mensajes
   * Almacenar datos en archivo JSON (conversations.json) sin base de datos
-  * Frontend: Agregar sidebar izquierdo con lista de conversaciones, click para cargar conversación
+  * Frontend: Modificar el componente Chat existente para agregar sidebar izquierdo con lista de conversaciones
+  * Implementar funcionalidad para crear nueva conversación, cargar conversación existente, eliminar conversación
   * Auto-generar títulos basados en los primeros 50 caracteres del primer mensaje del usuario
-- Contexto: La aplicación actual es un chat con IA que usa streaming, pero las conversaciones se pierden al recargar
+  * Usar componentes ShadCN UI existentes (Button, ScrollArea, Separator, etc.)
+- Contexto: La aplicación actual usa el componente Chat en frontend/components/chat.tsx con streaming hacia backend FastAPI, pero las conversaciones se pierden al recargar
 - Restricciones: 
   * No usar base de datos, solo archivos JSON
-  * Mantener compatibilidad con el sistema de streaming actual
-  * El sidebar debe ser responsive y colapsable en móviles
+  * Mantener compatibilidad con el sistema de streaming actual en /chat/stream
+  * El sidebar debe ser responsive y colapsable en móviles usando componentes ShadCN UI
+  * Mantener el theme provider y modo oscuro existente
   * Máximo 100 conversaciones guardadas (eliminar las más antiguas automáticamente)
 ```
 
 **Archivos a modificar:**
 - `backend/main.py` (nuevos endpoints)
-- `templatenextjs/app/ai-chat/page.tsx` (sidebar y funcionalidad)
+- `frontend/components/chat.tsx` (sidebar y funcionalidad)
 - Crear: `backend/conversations.json` (almacenamiento)
 
 ---
