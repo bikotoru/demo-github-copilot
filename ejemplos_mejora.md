@@ -62,29 +62,32 @@ En Python usando FastAPI y TypeScript usando Next.js con React, crea un sistema 
 **Prompt Estructurado:**
 
 ```
-#file:templatenextjs/app/ai-chat/page.tsx
+#file:frontend/components/chat.tsx
+#file:frontend/package.json
 
 En TypeScript usando Next.js con React y ShadCN UI, implementa renderizado de Markdown en los mensajes del chat:
 
 - Objetivo principal: Mostrar mensajes con formato Markdown (negrita, cursiva, código, listas, enlaces, etc.)
 - Requisitos específicos:
   * Instalar y configurar react-markdown y react-syntax-highlighter
-  * Renderizar mensajes de la IA con formato Markdown completo
+  * Modificar el componente Chat existente para renderizar mensajes de la IA con formato Markdown
   * Syntax highlighting para bloques de código con nombres de lenguajes
   * Soporte para tablas, listas, enlaces, imágenes
-  * Mantener el estilo visual actual del chat (colores, espaciado, bordes redondeados)
-  * Agregar botón "copiar código" en bloques de código
-- Contexto: Los mensajes actualmente se muestran como texto plano, pero la IA a menudo responde con Markdown
+  * Mantener el estilo visual actual del chat (colores ShadCN UI, espaciado, bordes redondeados)
+  * Agregar botón "copiar código" en bloques de código usando componentes ShadCN UI
+  * Integrar con el tema oscuro/claro existente usando next-themes
+- Contexto: La aplicación actual usa frontend/components/chat.tsx que muestra mensajes como texto plano, pero la IA Gemini responde con Markdown
 - Restricciones:
-  * Mantener compatibilidad con el streaming actual (renderizar Markdown incremental)
-  * Los estilos deben respetar el tema oscuro/claro actual
+  * Mantener compatibilidad con el streaming actual (renderizar Markdown incremental durante el streaming)
+  * Los estilos deben respetar el tema oscuro/claro actual usando CSS variables de ShadCN
   * Sanitizar contenido para evitar XSS
-  * No afectar el rendimiento del streaming
+  * No afectar el rendimiento del streaming en /chat/stream
+  * Usar solo los componentes ShadCN UI ya instalados donde sea posible
 ```
 
 **Archivos a modificar:**
-- `templatenextjs/app/ai-chat/page.tsx` (renderizado de markdown)
-- `templatenextjs/package.json` (nuevas dependencias)
+- `frontend/components/chat.tsx` (renderizado de markdown)
+- `frontend/package.json` (nuevas dependencias)
 
 ---
 
@@ -94,29 +97,31 @@ En TypeScript usando Next.js con React y ShadCN UI, implementa renderizado de Ma
 
 ```
 #file:backend/main.py
-#file:templatenextjs/app/ai-chat/page.tsx
+#file:frontend/components/chat.tsx
 
-En Python usando FastAPI y TypeScript usando Next.js, implementa un sistema de conteo de tokens:
+En Python usando FastAPI y TypeScript usando Next.js con ShadCN UI, implementa un sistema de conteo de tokens:
 
 - Objetivo principal: Mostrar tokens de entrada y salida consumidos en cada mensaje para control de costos
 - Requisitos específicos:
-  * Backend: Calcular tokens antes y después de cada llamada a Gemini
+  * Backend: Modificar el endpoint /chat/stream para calcular tokens antes y después de cada llamada a Gemini
   * Usar la función count_tokens() de la API de Gemini para conteo preciso
-  * Retornar en la respuesta: input_tokens, output_tokens, total_tokens
-  * Frontend: Mostrar contadores debajo de cada mensaje con iconos
-  * Agregar contador total de la sesión en la parte superior del chat
-  * Mostrar costo estimado basado en precios actuales de Gemini
-- Contexto: Los usuarios necesitan controlar el consumo de tokens para gestionar costos de API
+  * Retornar en la respuesta streaming: input_tokens, output_tokens, total_tokens
+  * Frontend: Modificar el componente Chat existente para mostrar contadores debajo de cada mensaje con iconos de Lucide React
+  * Agregar contador total de la sesión en la cabecera del chat (junto al toggle de tema)
+  * Mostrar costo estimado basado en precios actuales de Gemini (input: $0.000125/1K tokens, output: $0.000375/1K tokens)
+  * Usar Badge component de ShadCN UI para mostrar la información de tokens
+- Contexto: La aplicación actual usa streaming en /chat/stream y el componente Chat, los usuarios necesitan controlar costos
 - Restricciones:
-  * Mantener compatibilidad con streaming (actualizar contadores en tiempo real)
-  * Los contadores deben ser discretos visualmente pero informativos
-  * Incluir opción para ocultar/mostrar información de tokens
+  * Mantener compatibilidad con streaming actual (actualizar contadores en tiempo real durante el stream)
+  * Los contadores deben ser discretos visualmente usando componentes ShadCN UI pero informativos
+  * Incluir Toggle component para ocultar/mostrar información de tokens
   * Calcular tokens solo cuando sea necesario para optimizar rendimiento
+  * Respetar el tema oscuro/claro existente
 ```
 
 **Archivos a modificar:**
 - `backend/main.py` (cálculo de tokens)
-- `templatenextjs/app/ai-chat/page.tsx` (UI de contadores)
+- `frontend/components/chat.tsx` (UI de contadores)
 
 ---
 
